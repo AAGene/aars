@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/haje/Haje.iml" filepath="$PROJECT_DIR$/haje/Haje.iml" />
+      <module fileurl="file://$PROJECT_DIR$/nui/Nui.iml" filepath="$PROJECT_DIR$/nui/Nui.iml" />
+      <module fileurl="file://$PROJECT_DIR$/shatigon/shatigon.iml" filepath="$PROJECT_DIR$/shatigon/shatigon.iml" />
+      <module fileurl="file://$PROJECT_DIR$/thiol.iml" filepath="$PROJECT_DIR$/thiol.iml" />
+    </modules>
+  </component>
+</project>

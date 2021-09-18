@@ -1,0 +1,7 @@
+[workspace]
+
+members = [
+    "haje",
+    "shatigon",
+    "nui"
+]
