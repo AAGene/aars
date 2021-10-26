@@ -84,4 +84,3 @@ impl Serializable for GLRegisterGameServerPacket {
         log::trace!("Reading GLRegisterGameServerPacket - key {}, gsId {}, mirrors {}", self.secret_key, self.game_server_id, mirrors.len());
     }
 }
-

@@ -37,7 +37,7 @@ pub trait TcpServer {
             }
         } {}
     }
-    
+
     fn on_receive(&mut self, mut buf: &Vec<u8>)  {
         println!("STD Packet received");
         println!("{:#01x?}", buf)
