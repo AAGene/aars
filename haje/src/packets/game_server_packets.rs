@@ -10,11 +10,16 @@ pub fn read_register_game_server_packet(mut stream: PacketStream) -> RegisterGam
     let secret_key = stream.read_string();
     let game_server_id = stream.read_u8();
     let mirrors = stream.read_vec_32();
-    log::trace!("Reading GLRegisterGameServerPacket - key {}, gsId {}, mirrors {}", secret_key, game_server_id, mirrors.len());
+    log::trace!(
+        "Reading GLRegisterGameServerPacket - key {}, gsId {}, mirrors {}",
+        secret_key,
+        game_server_id,
+        mirrors.len()
+    );
 
     RegisterGameServerData {
         secret_key,
         game_server_id,
-        additional_game_server_ids: mirrors
+        additional_game_server_ids: mirrors,
     }
 }

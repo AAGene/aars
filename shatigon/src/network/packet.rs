@@ -1,4 +1,4 @@
-use byteorder::{LittleEndian, ByteOrder};
+use byteorder::{ByteOrder, LittleEndian};
 use std::str;
 
 /**
@@ -16,21 +16,21 @@ pub trait Packet: Serializable {
 /**
   Represents an object that can be written/read inside of network packets
 */
-pub trait Serializable : Sized {
+pub trait Serializable: Sized {
     fn write(&self, stream: PacketStream) {}
     fn read(&mut self, stream: PacketStream) {}
 }
 
 pub struct PacketStream {
     pub raw: Vec<u8>,
-    pub idx: u16
+    pub idx: u16,
 }
 
 impl PacketStream {
     pub fn clone(&mut self) -> PacketStream {
         PacketStream {
             idx: self.idx,
-            raw: self.raw.clone()
+            raw: self.raw.clone(),
         }
     }
 
@@ -66,11 +66,11 @@ impl PacketStream {
 
     pub fn read_vec(&mut self, len: u16) -> Vec<u8> {
         if len == 0 {
-            return vec!()
+            return vec![];
         }
 
-        let res = &self.raw[self.idx as usize .. (self.idx + len) as usize];
+        let res = &self.raw[self.idx as usize..(self.idx + len) as usize];
         self.idx += len;
-        return res.to_vec()
+        return res.to_vec();
     }
 }

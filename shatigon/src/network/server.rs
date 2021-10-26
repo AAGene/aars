@@ -1,5 +1,5 @@
-use std::net::{TcpStream, Shutdown, TcpListener};
 use std::io::Read;
+use std::net::{Shutdown, TcpListener, TcpStream};
 
 pub trait TcpServer {
     #[tokio::main]
@@ -29,16 +29,19 @@ pub trait TcpServer {
                 // stream.write(&data[0..size]).unwrap();
                 self.on_receive(&data[0..size].to_vec());
                 true
-            },
+            }
             Err(_) => {
-                println!("An error occurred, terminating connection with {}", stream.peer_addr().unwrap());
+                println!(
+                    "An error occurred, terminating connection with {}",
+                    stream.peer_addr().unwrap()
+                );
                 stream.shutdown(Shutdown::Both).unwrap();
                 false
             }
         } {}
     }
 
-    fn on_receive(&mut self, mut buf: &Vec<u8>)  {
+    fn on_receive(&mut self, mut buf: &Vec<u8>) {
         println!("STD Packet received");
         println!("{:#01x?}", buf)
     }
