@@ -1,0 +1,6 @@
+CREATE TABLE game_servers (
+  id SERIAL PRIMARY KEY,
+  name TEXT UNIQUE NOT NULL,
+  ip TEXT NOT NULL,
+  port INT NOT NULL
+);

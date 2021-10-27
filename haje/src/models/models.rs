@@ -9,3 +9,11 @@ pub struct Account {
     pub create_ip: String,
     pub last_ip: Option<String>,
 }
+
+#[derive(Queryable)]
+pub struct GameServer {
+    pub id: i32,
+    pub name: String,
+    pub ip: String,
+    pub port: i32
+}

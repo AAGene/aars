@@ -1,5 +1,4 @@
-use byteorder::{ByteOrder, LittleEndian};
-use shatigon::network::packet::{Packet, PacketStream, Serializable};
+use shatigon::network::packet::{PacketStream, Serializable};
 
 pub struct LoginPacket<T>
 where
@@ -34,7 +33,7 @@ impl<T> Serializable for LoginPacket<T>
 where
     T: Serializable,
 {
-    fn write(&self, stream: PacketStream) {}
+    fn write(&self, _stream: PacketStream) {}
 
     fn read(&mut self, mut stream: PacketStream) {
         self.length = stream.read_u16();
@@ -56,9 +55,9 @@ impl EmptyPacket {
 }
 
 impl Serializable for EmptyPacket {
-    fn write(&self, stream: PacketStream) {}
+    fn write(&self, _stream: PacketStream) {}
 
-    fn read(&mut self, stream: PacketStream) {
+    fn read(&mut self, _stream: PacketStream) {
         println!("Empty packet")
     }
 }
@@ -80,7 +79,7 @@ impl GLRegisterGameServerPacket {
 }
 
 impl Serializable for GLRegisterGameServerPacket {
-    fn write(&self, stream: PacketStream) {}
+    fn write(&self, _stream: PacketStream) {}
 
     fn read(&mut self, mut stream: PacketStream) {
         self.secret_key = stream.read_string();

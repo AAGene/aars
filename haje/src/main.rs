@@ -2,12 +2,10 @@ extern crate diesel;
 
 mod network;
 
-use log::{info, trace, warn};
+use log::{info};
 use shatigon::network::server::TcpServer;
 
-use self::diesel::prelude::*;
-use haje::establish_connection;
-use haje::models::models::Account;
+use haje::services::database;
 use simple_logger::SimpleLogger;
 
 fn main() {
@@ -16,9 +14,9 @@ fn main() {
 
     // TODO: Load config
 
-    // TODO: Connect to PostgreSQL
-    use haje::schema::accounts::dsl::*;
-    let connection = establish_connection();
+    unsafe {
+        database::init();
+    }
 
     // TODO: Start a server
     let mut server = network::login_server::LoginServer::new();

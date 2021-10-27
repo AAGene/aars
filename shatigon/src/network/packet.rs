@@ -17,8 +17,8 @@ pub trait Packet: Serializable {
   Represents an object that can be written/read inside of network packets
 */
 pub trait Serializable: Sized {
-    fn write(&self, stream: PacketStream) {}
-    fn read(&mut self, stream: PacketStream) {}
+    fn write(&self, _stream: PacketStream) {}
+    fn read(&mut self, _stream: PacketStream) {}
 }
 
 pub struct PacketStream {

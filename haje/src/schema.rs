@@ -10,3 +10,17 @@ table! {
         last_ip -> Nullable<Text>,
     }
 }
+
+table! {
+    game_servers (id) {
+        id -> Int4,
+        name -> Text,
+        ip -> Text,
+        port -> Int4,
+    }
+}
+
+allow_tables_to_appear_in_same_query!(
+    accounts,
+    game_servers,
+);

@@ -1,8 +1,5 @@
-use crate::network::login_packet::{GLRegisterGameServerPacket, LoginPacket};
-use byteorder::{ByteOrder, LittleEndian};
-use shatigon::network::packet::{PacketStream, Serializable};
+use shatigon::network::packet::{PacketStream};
 use shatigon::network::server::TcpServer;
-use std::net::TcpListener;
 
 use haje::packets::game_server_packets::read_register_game_server_packet;
 use haje::services::game_server_service;
@@ -10,7 +7,7 @@ use haje::services::game_server_service;
 pub struct LoginServer {}
 
 impl TcpServer for LoginServer {
-    fn on_receive(&mut self, mut buf: &Vec<u8>) {
+    fn on_receive(&mut self, buf: &Vec<u8>) {
         let mut stream = PacketStream {
             raw: buf.clone(),
             idx: 0,
