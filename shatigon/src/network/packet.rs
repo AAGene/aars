@@ -37,26 +37,26 @@ impl PacketStream {
     pub fn read_u8(&mut self) -> u8 {
         let result = self.raw[self.idx as usize];
         self.idx += 1;
-        return result;
+        result
     }
 
     pub fn read_u16(&mut self) -> u16 {
         let result = LittleEndian::read_u16(&self.raw[self.idx as usize..=(self.idx + 1) as usize]);
         self.idx += 2;
-        return result;
+        result
     }
 
     pub fn read_u32(&mut self) -> u32 {
         let result = LittleEndian::read_u32(&self.raw[self.idx as usize..=(self.idx + 3) as usize]);
         self.idx += 4;
-        return result;
+        result
     }
 
     pub fn read_string(&mut self) -> String {
         let size = self.read_u16();
         let string = str::from_utf8(&self.raw[self.idx as usize..(self.idx + size) as usize]);
         self.idx += size;
-        return string.unwrap().to_string();
+        string.unwrap().to_string()
     }
 
     pub fn read_vec_32(&mut self) -> Vec<u8> {
@@ -71,6 +71,6 @@ impl PacketStream {
 
         let res = &self.raw[self.idx as usize..(self.idx + len) as usize];
         self.idx += len;
-        return res.to_vec();
+        res.to_vec()
     }
 }
