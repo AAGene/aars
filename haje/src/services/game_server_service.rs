@@ -1,10 +1,10 @@
-use crate::packets::game_server_packets::RegisterGameServerData;
-use std::env;
-use diesel::PgConnection;
-use diesel::prelude::*;
-use crate::models::models::GameServer;
-use crate::schema::game_servers;
 use super::database;
+use crate::models::models::GameServer;
+use crate::packets::game_server_packets::RegisterGameServerData;
+use crate::schema::game_servers;
+use diesel::prelude::*;
+use diesel::PgConnection;
+use std::env;
 
 /// Registers (aka marks as online) a game server for players to connect to.
 pub fn register(data: RegisterGameServerData) {
@@ -16,12 +16,21 @@ pub fn register(data: RegisterGameServerData) {
             data.secret_key
         );
 
-        return
+        return;
     }
 
-    let game_server_data = get_game_server(&(data.game_server_id as i32), database::get_connection().as_ref().unwrap());
+    let game_server_data = get_game_server(
+        &(data.game_server_id as i32),
+        database::get_connection().as_ref().unwrap(),
+    );
 
-    log::info!("Registering GS '{}' ({}) - {}:{}", game_server_data.name, game_server_data.id, game_server_data.ip, game_server_data.port);
+    log::info!(
+        "Registering GS '{}' ({}) - {}:{}",
+        game_server_data.name,
+        game_server_data.id,
+        game_server_data.ip,
+        game_server_data.port
+    );
 
     // TODO: Register the server!
 
@@ -32,7 +41,10 @@ pub fn register(data: RegisterGameServerData) {
 fn get_game_server(gsid: &i32, db: &PgConnection) -> GameServer {
     use crate::schema::game_servers::dsl::*;
 
-    let result: GameServer = game_servers.filter(id.eq(gsid)).first::<GameServer>(db).expect("Game Server not found");
+    let result: GameServer = game_servers
+        .filter(id.eq(gsid))
+        .first::<GameServer>(db)
+        .expect("Game Server not found");
 
-    return result
+    return result;
 }

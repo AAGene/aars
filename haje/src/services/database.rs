@@ -1,6 +1,6 @@
-use diesel::{PgConnection, Connection};
-use std::env;
+use diesel::{Connection, PgConnection};
 use dotenv::dotenv;
+use std::env;
 
 static mut CONNECTION: Option<PgConnection> = None;
 
@@ -10,9 +10,7 @@ pub unsafe fn init() {
 }
 
 pub fn get_connection() -> &'static Option<PgConnection> {
-    unsafe {
-        &CONNECTION
-    }
+    unsafe { &CONNECTION }
 }
 
 fn establish_connection() -> PgConnection {

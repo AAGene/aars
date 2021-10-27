@@ -15,5 +15,5 @@ pub struct GameServer {
     pub id: i32,
     pub name: String,
     pub ip: String,
-    pub port: i32
+    pub port: i32,
 }

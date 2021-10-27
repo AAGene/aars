@@ -1,4 +1,4 @@
-use shatigon::network::packet::{PacketStream};
+use shatigon::network::packet::PacketStream;
 use shatigon::network::server::TcpServer;
 
 use haje::packets::game_server_packets::read_register_game_server_packet;

@@ -2,7 +2,7 @@ extern crate diesel;
 
 mod network;
 
-use log::{info};
+use log::info;
 use shatigon::network::server::TcpServer;
 
 use haje::services::database;
